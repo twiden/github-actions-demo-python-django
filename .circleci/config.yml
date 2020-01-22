@@ -25,8 +25,8 @@ jobs:
           POSTGRES_DB: circle_test
     steps:
       - restore_cache:
-        keys:
-          - source-code-{{ .Branch }}-{{ .Revision }}
+          keys:
+            - source-code-{{ .Branch }}-{{ .Revision }}
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
@@ -48,8 +48,8 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - restore_cache:
-        keys:
-          - code-and-env-{{ .Branch }}-{{ .Revision }}
+          keys:
+            - code-and-env-{{ .Branch }}-{{ .Revision }}
       - run:
           command: |
             pipenv run python manage.py test
@@ -60,8 +60,8 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - restore_cache:
-        keys:
-          - code-and-env-{{ .Branch }}-{{ .Revision }}
+          keys:
+            - code-and-env-{{ .Branch }}-{{ .Revision }}
       - run:
           command: |
             pipenv run python manage.py test
@@ -72,12 +72,12 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - restore_cache:
-        keys:
-          - code-and-env-{{ .Branch }}-{{ .Revision }}
+          keys:
+            - code-and-env-{{ .Branch }}-{{ .Revision }}
       - run:
-        name: Build docker image
-        command: |
-          echo "This is a deploy script"
+          name: Build docker image
+          command: |
+            echo "This is a deploy script"
       - run:
           name: Upload docker image
           command: |
@@ -89,9 +89,9 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - run:
-        name: Build docker image
-        command: |
-          echo "Rebuild kubernetes manifests and do kubectl apply"
+          name: Build docker image
+          command: |
+            echo "Rebuild kubernetes manifests and do kubectl apply"
       
   deploy-staging: *deploy
   deploy-prod: *deploy
