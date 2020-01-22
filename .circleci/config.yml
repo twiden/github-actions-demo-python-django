@@ -47,6 +47,8 @@ jobs:
     docker:
       - image: circleci/python:3.6.4
     steps:
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
             - code-and-env-{{ .Branch }}-{{ .Revision }}
@@ -59,6 +61,8 @@ jobs:
     docker:
       - image: circleci/python:3.6.4
     steps:
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
             - code-and-env-{{ .Branch }}-{{ .Revision }}
@@ -71,6 +75,8 @@ jobs:
     docker:
       - image: circleci/python:3.6.4
     steps:
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
             - code-and-env-{{ .Branch }}-{{ .Revision }}
