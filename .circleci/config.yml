@@ -110,43 +110,43 @@ workflows:
     jobs:
       - checkout
       - create-env:
-        requires:
-          - checkout
+          requires:
+            - checkout
       - test:
-        requires:
-          - create-env
+          requires:
+            - create-env
       - lint:
         requires:
           - create-env
       - deploy-staging:
-        filters:
-          branches:
-            only:
-              - master
+          filters:
+            branches:
+              only:
+                - master
       - build:
-        requires:
-          - test
-          - lint
+          requires:
+            - test
+            - lint
       - deploy-staging:
-        requires:
-          - build
-        filters:
-          branches:
-            only:
-              - master
-      - approval
-        type: approval
-        requires:
-          - deploy-staging
-        filters:
-          branches:
-            only:
-              - master
-      - deploy-prod
-        requires:
-          - approval
-        filters:
-          branches:
-            only:
-              - master
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - approve:
+          type: approval
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-prod:
+          requires:
+            - approval
+          filters:
+            branches:
+              only:
+                - master
      
