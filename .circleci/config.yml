@@ -8,9 +8,9 @@ jobs:
     steps:
       - checkout
       - save_cache:
-        key: source-code-{{ .Branch }}-{{ .Revision }}
-        paths:
-          - ~/repo
+          key: source-code-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ~/repo
 
   create-env:
     working_directory: ~/repo
@@ -137,5 +137,11 @@ workflows:
             branches:
               only:
                 - master
-      
+      - deploy-prod:
+          requires:
+            - approve
+          filters:
+            branches:
+              only:
+                - master
      
