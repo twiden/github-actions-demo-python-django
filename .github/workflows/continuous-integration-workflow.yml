@@ -59,6 +59,8 @@ jobs:
         run: |
           ls -lah
       - name: Run tests
+        env:
+          PIPENV_VENV_IN_PROJECT: true
         run: |
           pipenv run python manage.py test
   lint:
