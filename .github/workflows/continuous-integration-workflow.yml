@@ -3,8 +3,8 @@ name: Build and test
 on: [push]
 
 jobs:
-  build:
-    name: Build and test
+  checkout:
+    name: Checkout
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,3 +23,24 @@ jobs:
         run: |
           sudo pip3 install pipenv
           pipenv install
+  create_env:
+    name: Create env
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8' # Semantic version range syntax or exact version of a Python version
+          architecture: 'x64' # Optional - x64 or x86, defaults to x64
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install system packages
+        run: |
+          sudo apt-get install -y libpq-dev
+      - name: Install application dependencies
+        run: |
+          sudo pip3 install pipenv
+          pipenv install
+        
