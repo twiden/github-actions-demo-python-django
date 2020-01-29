@@ -53,6 +53,9 @@ jobs:
         with:
           name: installed-env
           path: .
+      - name: foo
+        run: |
+          ls -lah
       - name: Run tests
         run: |
           pipenv run python manage.py test
