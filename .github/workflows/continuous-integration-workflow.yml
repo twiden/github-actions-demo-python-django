@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create_env
     steps:
-      - name: Install application dependencies
+      - name: Run tests
         run: |
           python -c "import sys; print(sys.version)"
   lint:
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create_env
     steps:
-      - name: Install application dependencies
+      - name: Run pyflake8
         run: |
           python -c "import sys; print(sys.version)"
         
