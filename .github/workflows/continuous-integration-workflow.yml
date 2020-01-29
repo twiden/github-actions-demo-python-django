@@ -31,6 +31,8 @@ jobs:
           sudo apt-get install -y libpq-dev
           sudo pip3 install pipenv
       - name: Install application dependencies
+        env:
+          PIPENV_VENV_IN_PROJECT: true
         run: |
           pipenv install
       - uses: actions/upload-artifact@v1
