@@ -23,6 +23,7 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: source-code
+          path: .
       - name: List files
         run: ls -lah
       - name: Set up Python 3.8
