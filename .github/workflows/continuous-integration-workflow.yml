@@ -28,4 +28,20 @@ jobs:
         run: |
           sudo pip3 install pipenv
           pipenv install
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: create_env
+    steps:
+      - name: Install application dependencies
+        run: |
+          python -c "import sys; print(sys.version)"
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: create_env
+    steps:
+      - name: Install application dependencies
+        run: |
+          python -c "import sys; print(sys.version)"
         
