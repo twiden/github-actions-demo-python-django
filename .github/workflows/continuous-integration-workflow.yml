@@ -9,16 +9,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: List files
+        run: ls -lah
   create_env:
     name: Create env
     runs-on: ubuntu-latest
     needs: checkout
     steps:
+      - name: List files
+        run: ls -lah
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
-          python-version: '3.8' # Semantic version range syntax or exact version of a Python version
-          architecture: 'x64' # Optional - x64 or x86, defaults to x64
+          python-version: '3.8'
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Install system packages
@@ -28,11 +31,15 @@ jobs:
         run: |
           sudo pip3 install pipenv
           pipenv install
+      - name: List files
+        run: ls -lah
   test:
     name: Test
     runs-on: ubuntu-latest
     needs: create_env
     steps:
+      - name: List files
+        run: ls -lah
       - name: Run tests
         run: |
           pipenv run python manage.py test
@@ -41,6 +48,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: create_env
     steps:
+      - name: List files
+        run: ls -lah
       - name: Run pyflake8
         run: |
           pipenv run pylint templates
